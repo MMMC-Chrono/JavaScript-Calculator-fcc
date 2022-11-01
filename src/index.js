@@ -4,6 +4,10 @@ function removeZero() {
   }
 }
 
+function displayNum(num) {
+  $("#display").append(num.text());
+}
+
 $("#clear").click(function() {
       $("#display").text("0");
 });
@@ -14,42 +18,40 @@ $("#zero").click(function() {
   $("#display").append($("#zero").text());
 });
 $("#one").click(function() {
-  
   removeZero();
-  $("#display").append($("#one").text());
+  displayNum($("#one"));
 });
 $("#two").click(function() {
   removeZero();
-  $("#display").append($("#two").text());
+  displayNum($("#two"));
 });
 $("#three").click(function() {
   removeZero();
-  $("#display").append($("#three").text());
+  displayNum($("#three"));
 });
 $("#four").click(function() {
   removeZero();
-$("#display").append($("#four").text());
+  displayNum($("#four"));
   });
 $("#five").click(function() {
   removeZero();
-  $("#display").append($("#five").text());
+  displayNum($("#five"));
 });
 $("#six").click(function() {
   removeZero();
-  $("#display").append($("#six").text());
+  displayNum($("#six"));
 });
 $("#seven").click(function() {
   removeZero();
-  $("#display").append($("#seven").text());
+  displayNum($("#seven"));
 });
 $("#eight").click(function() {
   removeZero();
-  $("#display").append($("#eight").text());
+  displayNum($("#eight"));
 });
 $("#nine").click(function() {
   removeZero();
-  $("#display").append($("#nine").text());
-  
+  displayNum($("#nine")); 
 });
 //symbols
 $("#add").click(function() {
