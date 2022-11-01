@@ -20,6 +20,27 @@ function calculation() {
     classify(arr[i]);
   }
 }
+function classify(val) {
+  let input = operators.indexOf(val);
+  if(input === -1) {
+    //console.log(val, "numbers")
+    numbers.push(val);
+  } else if (input > 0) {
+    console.log(val, "operators" , input)   
+    if (input === 2) {
+      subtract = true;
+      console.log("-")
+    } else if (input === 1) {
+      sum = true;
+      console.log("+")
+    }
+
+  } else if (input === 0) {
+    //console.log(val, "equals")
+
+  }
+}
+
 
 
 
