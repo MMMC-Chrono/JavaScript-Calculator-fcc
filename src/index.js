@@ -8,9 +8,20 @@ function displayNum(num) {
   $("#display").append(num.text());
 }
 
-$("#clear").click(function() {
-      $("#display").text("0");
-});
+const operators = ["=", "+", "-", "x", "/"];
+let sum = false;
+let subtract = false;
+
+let numbers = [];
+
+function calculation() {
+  let arr = $("#display").text().split(" ");
+  for (let i = 0; i < arr.length; i++) {
+    classify(arr[i]);
+  }
+}
+
+
 
 //numbers
 $("#zero").click(function() {
@@ -56,23 +67,18 @@ $("#nine").click(function() {
 //symbols
 $("#add").click(function() {
   removeZero();
-  $("#display").append("+");
+  $("#display").append(" + ");
 });
 $("#subtract").click(function() {
   removeZero();
-  $("#display").append("-");
+  $("#display").append(" - ");
 });
 $("#multiply").click(function() {
   removeZero();
-  $("#display").append("x");
+  $("#display").append(" x ");
 });
 $("#divide").click(function() {
   removeZero();
-  $("#display").append("");
-});
-
-$("#equals").click(function() {
-  removeZero();
-  $("#display").append("=");
+  $("#display").append(" / ");
 });
 
