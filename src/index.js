@@ -41,8 +41,45 @@ function classify(val) {
   }
 }
 
+$("#clear").click(function() {
+  $("#display").text("0");
+  numbers = [];
+  console.clear();
+});
 
+$("#equals").click(function() {
+removeZero();
+calculation();
+let addition = 0;
+let subtraction = 0;
+console.log(sum, "sum1")
+if (sum === true) {
+//console.log(numbers, "succeed");
+for (j in numbers) {
+  addition += parseInt(numbers[j]);
+}
+//console.log(addition);    
+numbers = [];
+numbers.push(addition);    
+//console.log(numbers);
 
+} else if (subtract === true) {
+console.log(numbers, "succeed");
+for (j in numbers) {
+  subtraction -= parseInt(numbers[j]);
+}
+//console.log(subtraction);    
+numbers = [];
+numbers.push(subtraction);    
+//console.log(numbers);
+}
+console.log(sum, "sum")
+console.log(subtract, " subtract")
+let total = addition + subtraction;
+$("#display").append(" = ", total)
+sum = false;
+subtract = false;
+});
 
 //numbers
 $("#zero").click(function() {
