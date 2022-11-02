@@ -9,30 +9,41 @@ function displayNum(num) {
 }
 
 const operators = ["+", "-", "x", "/"];
-let sum = false;
-let subtract = false;
-
-let numbers = [];
+let total = 0;
 
 function calculation() {
   let arr = $("#display").text().split(" ");
+  while (arr.length > 2) {
   for (let i = 0; i < arr.length; i++) {
-    let input = operators.indexOf(arr[i]);
-  if(input === -1) {
-    numbers.push(arr[i]);
-  } else if (input > -1) { 
-    
-    if (input === 0) {
-      sum = true;
-      console.log(i, "add")
-    } else if (input === 1) {
-      subtract = true;
-      console.log(i, "minus")
+    let input = operators.indexOf(arr[i]);    
+     if (input === 0) {
+          let addition = parseInt(arr[i-1]) + parseInt(arr[i+1]);
+          arr.splice(i-1, i+2, addition);
+          if (arr.length === 1) {
+            total = addition;
+          }
+      } else if (input === 1) {
+          let subtraction = parseInt(arr[i-1]) - parseInt(arr[i+1]);
+          arr.splice(i-1, i+2, subtraction);
+          if (arr.length === 1) {
+            total = subtraction;
+          } 
+      } else if (input === 2) {
+        let multiply = parseInt(arr[i-1]) * parseInt(arr[i+1]);
+        arr.splice(i-1, i+2, multiply);
+        if (arr.length === 1) {
+          total = multiply;
+        } 
+      } else if (input === 3) {
+        let divide = parseInt(arr[i-1]) / parseInt(arr[i+1]);
+        arr.splice(i-1, i+2, divide);
+        if (arr.length === 1) {
+          total = divide;
+      } 
     }
-
-  }
   }
 }
+
 
 $("#clear").click(function() {
   $("#display").text("0");
@@ -43,24 +54,6 @@ $("#clear").click(function() {
 $("#equals").click(function() {
 removeZero();
 calculation();
-let addition = 0;
-let subtraction = 0;
-/*if (sum === true) {
-  for (j in numbers) {
-    addition = parseInt(numbers[0]) + parseInt(numbers[1]);
-  }
-  numbers = [];
-  numbers.push(addition);   
-  sum = false;
-
-} else if (subtract === true) {
-  console.log(numbers, "succeed");
-  subtraction = numbers[0] - numbers[1];   
-  numbers = [];
-  numbers.push(subtraction);  
-  subtract = false;
-}*/
-let total = addition + subtraction;
 $("#display").append(" = ", total)
 });
 
