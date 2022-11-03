@@ -8,11 +8,12 @@ function displayNum(num) {
   $("#display").append(num.text());
 }
 
-const operators = ["/", "x", "+", "-"];
+const operators = ["/", "*", "+", "-"];
 let total = 0; 
 
 function calculation() {
   let arr = $("#display").text().split(" ");
+  arr.splice(arr.length-2, 2)
   for ( let j in operators) {      
     if (arr.indexOf(operators[0]) > -1) {
       let i = arr.indexOf("/")
@@ -24,7 +25,7 @@ function calculation() {
         console.log("dividing", arr)
       }        
     } else if (arr.indexOf(operators[1]) > -1) { 
-      let i = arr.indexOf("x")         
+      let i = arr.indexOf("*")         
       let multiply = arr[i-1] * arr[i+1];
       arr.splice(i-1, 3, multiply);
       console.log(multiply, arr)
@@ -60,9 +61,11 @@ $("#clear").click(function() {
 });
 
 $("#equals").click(function() {
+$("#display").append(" = ")
+
 removeZero();
 calculation();
-$("#display").append(" = ", total)
+$("#display").append(total)
 });
 
 //numbers
@@ -117,9 +120,18 @@ $("#subtract").click(function() {
 });
 $("#multiply").click(function() {
   removeZero();
-  $("#display").append(" x ");
+  $("#display").append(" * ");
 });
 $("#divide").click(function() {
   removeZero();
   $("#display").append(" / ");
+});
+$("#decimal").click(function() { 
+  let arr = $("#display").text().split(" ")
+  let num = arr[arr.length - 1];
+  for (let i in num) {    
+    if (num.indexOf('.') === -1) {
+      $("#display").append($("#decimal").text());
+    }
+  }  
 });
