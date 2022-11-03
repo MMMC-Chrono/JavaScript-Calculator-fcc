@@ -109,29 +109,43 @@ $("#nine").click(function() {
   removeZero();
   displayNum($("#nine")); 
 });
+
+function oneOperator(operator) {
+  let arr = $("#display").text().split(" ");
+  for (let i in arr) {
+    if (operators.indexOf(arr[i]) !== -1) {
+      console.log(arr, arr[i], operators);
+      arr.splice(i);
+      console.log(arr);
+    }
+  }
+  $("#display").text(arr);
+}
+
 //symbols
 $("#add").click(function() {
   removeZero();
+  oneOperator(" + ")
   $("#display").append(" + ");
 });
 $("#subtract").click(function() {
-  removeZero();
+  removeZero();  
   $("#display").append(" - ");
 });
 $("#multiply").click(function() {
   removeZero();
+  oneOperator(" * ");
   $("#display").append(" * ");
 });
 $("#divide").click(function() {
   removeZero();
+  oneOperator(" / ")
   $("#display").append(" / ");
 });
 $("#decimal").click(function() { 
   let arr = $("#display").text().split(" ")
   let num = arr[arr.length - 1];
-  for (let i in num) {    
     if (num.indexOf('.') === -1) {
       $("#display").append($("#decimal").text());
     }
-  }  
 });
