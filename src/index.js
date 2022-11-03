@@ -8,42 +8,50 @@ function displayNum(num) {
   $("#display").append(num.text());
 }
 
-const operators = ["+", "-", "x", "/"];
-let total = 0;
+const operators = ["/", "x", "+", "-"];
+let total = 0; 
 
 function calculation() {
   let arr = $("#display").text().split(" ");
-  while (arr.length > 2) {
-  for (let i = 0; i < arr.length; i++) {
-    let input = operators.indexOf(arr[i]);    
-     if (input === 0) {
-          let addition = parseInt(arr[i-1]) + parseInt(arr[i+1]);
-          arr.splice(i-1, i+2, addition);
-          if (arr.length === 1) {
-            total = addition;
-          }
-      } else if (input === 1) {
-          let subtraction = parseInt(arr[i-1]) - parseInt(arr[i+1]);
-          arr.splice(i-1, i+2, subtraction);
-          if (arr.length === 1) {
-            total = subtraction;
-          } 
-      } else if (input === 2) {
-        let multiply = parseInt(arr[i-1]) * parseInt(arr[i+1]);
-        arr.splice(i-1, i+2, multiply);
-        if (arr.length === 1) {
-          total = multiply;
-        } 
-      } else if (input === 3) {
-        let divide = parseInt(arr[i-1]) / parseInt(arr[i+1]);
-        arr.splice(i-1, i+2, divide);
-        if (arr.length === 1) {
-          total = divide;
-      } 
+  for ( let j in operators) {      
+    if (arr.indexOf(operators[0]) > -1) {
+      let i = arr.indexOf("/")
+      let divide = arr[i-1] / arr[i+1];        
+      arr.splice(i-1, 3, divide);
+      console.log(divide, arr);
+      if (arr.length === 1) {
+        total = divide;
+        console.log("dividing", arr)
+      }        
+    } else if (arr.indexOf(operators[1]) > -1) { 
+      let i = arr.indexOf("x")         
+      let multiply = arr[i-1] * arr[i+1];
+      arr.splice(i-1, 3, multiply);
+      console.log(multiply, arr)
+      if (arr.length === 1) {
+        total = multiply;
+        console.log("multiplying", arr)
+      }
+    } else if (arr.indexOf(operators[2]) > -1) {          
+      let i = arr.indexOf("+")
+      let addition = parseFloat(arr[i-1]) + parseFloat(arr[i+1]);          
+      console.log(addition, parseFloat(arr[i-1]), parseFloat(arr[i+1]))
+      arr.splice(i-1, 3, addition);
+      if (arr.length === 1) {
+        total = addition;
+        console.log("adding", arr)
+      }
+    } else if (arr.indexOf(operators[3]) > -1) {
+      let i = arr.indexOf("-");
+      let subtraction = arr[i-1] - arr[i+1];     
+      arr.splice(i-1, 3, subtraction);
+      if (arr.length === 1) {
+        total = subtraction;
+        console.log("subtracting", arr)
+      }
     }
   }
 }
-
 
 $("#clear").click(function() {
   $("#display").text("0");
@@ -115,4 +123,3 @@ $("#divide").click(function() {
   removeZero();
   $("#display").append(" / ");
 });
-
