@@ -93,14 +93,29 @@ function afterEqual() {
 
 function initialSymbol(symbol) {
   let arr = $("#display").text().split(" ");
-  console.log(arr);
   if (arr[0] === "" && arr[1] === symbol) {
     console.log("initial symbol removed");
     $("#display").empty();
-  } else if (arr[1] === "-" && arr[3] === symbol) {
+  } else if (arr[1] === "-" && arr[2] === "" && arr[3] === symbol) {
     console.log("second symbol minus removed");
     $("#display").text(" - ");
   }
+}
+
+function minusMinus() {
+  let arr = $("#display").text().split(" ");
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === "-") {
+      if (arr[i-2] === "-" && arr[i-1] === "") {
+        arr.splice(i, 2)
+        console.log("minusMinus", arr);
+      } else if (arr[i-2] === "+" && arr[i-1] === "") {
+        arr.splice(i-2,2)
+        console.log("removedPlus", arr)
+      }
+    }     
+  }
+  $("#display").text(arr.join(" "))
 }
 
 $("#clear").click(function() {
@@ -154,7 +169,7 @@ $("#eight").click(function() {
 });
 $("#nine").click(function() {
   removeZero();
-  displayNum($("#nine")); 
+  displayNum($("#nine"));
 });
 
 //symbols
@@ -169,6 +184,7 @@ $("#subtract").click(function() {
   removeZero();  
   afterEqual();
   $("#display").append(" - ");
+  minusMinus();
 });
 $("#multiply").click(function() {
   removeZero();
