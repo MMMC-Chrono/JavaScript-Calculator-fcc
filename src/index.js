@@ -127,7 +127,7 @@ $("#equals").click(function() {
 removeZero();
 minus();
 calculation();
-$("#display").append(" = ", total)
+$("#display").append(" = ").append(`<br/><p>${total}</p>`);
 });
 
 //numbers
