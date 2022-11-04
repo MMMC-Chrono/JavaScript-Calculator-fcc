@@ -53,18 +53,39 @@ function calculation() {
 }
 
 function minus() {
-  let eg = "9 * - 5";
   let arr = $("#display").text().split(" ");
-  console.log(arr);
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === "-"){
-      if (operators.indexOf(arr[i-2]) !== -1) {
+      if (operators.indexOf(arr[i-2]) !== -1 && arr[i-1] === "" || arr[0] === "" && arr[1] === "-") {
         let minusNum = arr[i].concat(arr[i+1]);
         arr.splice(i-1, 3, minusNum)
-        console.log(arr);
       }
     }
   $("#display").text(arr.join(" "));
+  }
+}
+
+function oneOperator(operator) {
+  let arr = $("#display").text().split(" ");
+  for (let i in arr) {
+    if (operators.indexOf(arr[i-1]) !== -1 && arr[i-2] === "") {
+      console.log(arr, arr[i], operators);
+      arr.splice(i-1);
+      console.log(arr);
+    }
+  }
+  $("#display").text(arr.join(" "));
+}
+
+function afterEqual() {
+  let arr = $("#display").text().split(" ");
+  let newArr = "";
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === "=") {
+      newArr+=arr[i+1];    
+      console.log("equal")  
+      $("#display").text(newArr);
+    }
   }
 }
 
@@ -124,36 +145,28 @@ $("#nine").click(function() {
   displayNum($("#nine")); 
 });
 
-function oneOperator(operator) {
-  let arr = $("#display").text().split(" ");
-  for (let i in arr) {
-    if (operators.indexOf(arr[i]) !== -1) {
-      console.log(arr, arr[i], operators);
-      arr.splice(i);
-      console.log(arr);
-    }
-  }
-  $("#display").text(arr.join(" "));
-}
-
 //symbols
 $("#add").click(function() {
   removeZero();
+  afterEqual();
   oneOperator(" + ")
   $("#display").append(" + ");
 });
 $("#subtract").click(function() {
   removeZero();  
+  afterEqual();
   $("#display").append(" - ");
 });
 $("#multiply").click(function() {
   removeZero();
+  afterEqual();
   oneOperator(" * ");
   $("#display").append(" * ");
 });
 $("#divide").click(function() {
   removeZero();
-  oneOperator(" / ")
+  afterEqual();
+  oneOperator(" / ");
   $("#display").append(" / ");
 });
 $("#decimal").click(function() { 
