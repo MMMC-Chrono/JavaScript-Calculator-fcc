@@ -91,6 +91,18 @@ function afterEqual() {
   }
 }
 
+function initialSymbol(symbol) {
+  let arr = $("#display").text().split(" ");
+  console.log(arr);
+  if (arr[0] === "" && arr[1] === symbol) {
+    console.log("initial symbol removed");
+    $("#display").empty();
+  } else if (arr[1] === "-" && arr[3] === symbol) {
+    console.log("second symbol minus removed");
+    $("#display").text(" - ");
+  }
+}
+
 $("#clear").click(function() {
   $("#display").text("0");
   console.clear();
@@ -149,8 +161,9 @@ $("#nine").click(function() {
 $("#add").click(function() {
   removeZero();
   afterEqual();
-  oneOperator()
+  oneOperator();
   $("#display").append(" + ");
+  initialSymbol("+");
 });
 $("#subtract").click(function() {
   removeZero();  
@@ -162,15 +175,17 @@ $("#multiply").click(function() {
   afterEqual();
   oneOperator();
   $("#display").append(" * ");
+  initialSymbol("*")
 });
 $("#divide").click(function() {
   removeZero();
   afterEqual();
   oneOperator();
   $("#display").append(" / ");
+  initialSymbol("/");
 });
 $("#decimal").click(function() { 
-  let arr = $("#display").text().split(" ")
+  let arr = $("#display").text().split(" ");
   let num = arr[arr.length - 1];
     if (num.indexOf('.') === -1) {
       $("#display").append($("#decimal").text());
