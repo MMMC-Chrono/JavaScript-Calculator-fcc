@@ -18,35 +18,37 @@ function calculation() {
       let i = arr.indexOf("/")
       let divide = arr[i-1] / arr[i+1];        
       arr.splice(i-1, 3, divide);
-      console.log(divide, arr);
+      console.log("divide and arr", divide, arr);
       if (arr.length === 1) {
         total = divide;
-        console.log("dividing", arr)
+        console.log("divide is total", arr)
       }        
     } else if (arr.indexOf(operators[1]) > -1) { 
       let i = arr.indexOf("*")         
       let multiply = arr[i-1] * arr[i+1];
       arr.splice(i-1, 3, multiply);
-      console.log(multiply, arr)
+      console.log("multiply and arr", multiply, arr)
       if (arr.length === 1) {
         total = multiply;
-        console.log("multiplying", arr)
+        console.log("multiply is total", arr)
       }
     } else if (arr.indexOf(operators[2]) > -1) {          
       let i = arr.indexOf("+")
       let addition = parseFloat(arr[i-1]) + parseFloat(arr[i+1]);          
       arr.splice(i-1, 3, addition);
+      console.log("addition and arr", addition, arr)
       if (arr.length === 1) {
         total = addition;
-        console.log("adding", arr)
+        console.log("addition is total", arr)
       }
     } else if (arr.indexOf(operators[3]) > -1) {
       let i = arr.indexOf("-");
       let subtraction = arr[i-1] - arr[i+1];     
       arr.splice(i-1, 3, subtraction);
+      console.log("subtraction and arr", subtraction, arr);
       if (arr.length === 1) {
         total = subtraction;
-        console.log("subtracting", arr)
+        console.log("subtraction is total", arr)
       }
     }
   }
@@ -59,19 +61,19 @@ function minus() {
       if (operators.indexOf(arr[i-2]) !== -1 && arr[i-1] === "" || arr[0] === "" && arr[1] === "-") {
         let minusNum = arr[i].concat(arr[i+1]);
         arr.splice(i-1, 3, minusNum)
+        console.log("concatMinus", minusNum);
       }
     }
   $("#display").text(arr.join(" "));
   }
 }
 
-function oneOperator(operator) {
+function oneOperator() {
   let arr = $("#display").text().split(" ");
   for (let i in arr) {
     if (operators.indexOf(arr[i-1]) !== -1 && arr[0] !== "" && arr[i] === "") {
-      console.log(arr, arr[i], operators);
       arr.splice(i-1);
-      console.log(arr);
+      console.log("oneOperator is working", arr)
     }
   }
   $("#display").text(arr.join(" "));
@@ -83,7 +85,7 @@ function afterEqual() {
   for (let i = 0; i < arr.length; i++) {
     if (arr[i] === "=") {
       newArr+=arr[i+1];    
-      console.log("equal")  
+      console.log("afterEqual is working", arr)  
       $("#display").text(newArr);
     }
   }
@@ -91,12 +93,10 @@ function afterEqual() {
 
 $("#clear").click(function() {
   $("#display").text("0");
-  numbers = [];
   console.clear();
 });
 
 $("#equals").click(function() {
-
 removeZero();
 minus();
 calculation();
@@ -149,7 +149,7 @@ $("#nine").click(function() {
 $("#add").click(function() {
   removeZero();
   afterEqual();
-  oneOperator(" + ")
+  oneOperator()
   $("#display").append(" + ");
 });
 $("#subtract").click(function() {
@@ -160,13 +160,13 @@ $("#subtract").click(function() {
 $("#multiply").click(function() {
   removeZero();
   afterEqual();
-  oneOperator(" * ");
+  oneOperator();
   $("#display").append(" * ");
 });
 $("#divide").click(function() {
   removeZero();
   afterEqual();
-  oneOperator(" / ");
+  oneOperator();
   $("#display").append(" / ");
 });
 $("#decimal").click(function() { 
