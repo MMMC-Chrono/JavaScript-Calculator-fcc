@@ -13,7 +13,6 @@ let total = 0;
 
 function calculation() {
   let arr = $("#display").text().split(" ");
-  arr.splice(arr.length-2, 2)
   for ( let j in operators) {      
     if (arr.indexOf(operators[0]) > -1) {
       let i = arr.indexOf("/")
@@ -36,7 +35,6 @@ function calculation() {
     } else if (arr.indexOf(operators[2]) > -1) {          
       let i = arr.indexOf("+")
       let addition = parseFloat(arr[i-1]) + parseFloat(arr[i+1]);          
-      console.log(addition, parseFloat(arr[i-1]), parseFloat(arr[i+1]))
       arr.splice(i-1, 3, addition);
       if (arr.length === 1) {
         total = addition;
@@ -54,6 +52,22 @@ function calculation() {
   }
 }
 
+function minus() {
+  let eg = "9 * - 5";
+  let arr = $("#display").text().split(" ");
+  console.log(arr);
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] === "-"){
+      if (operators.indexOf(arr[i-2]) !== -1) {
+        let minusNum = arr[i].concat(arr[i+1]);
+        arr.splice(i-1, 3, minusNum)
+        console.log(arr);
+      }
+    }
+  $("#display").text(arr.join(" "));
+  }
+}
+
 $("#clear").click(function() {
   $("#display").text("0");
   numbers = [];
@@ -61,11 +75,11 @@ $("#clear").click(function() {
 });
 
 $("#equals").click(function() {
-$("#display").append(" = ")
 
 removeZero();
+minus();
 calculation();
-$("#display").append(total)
+$("#display").append(" = ", total)
 });
 
 //numbers
@@ -119,7 +133,7 @@ function oneOperator(operator) {
       console.log(arr);
     }
   }
-  $("#display").text(arr);
+  $("#display").text(arr.join(" "));
 }
 
 //symbols
