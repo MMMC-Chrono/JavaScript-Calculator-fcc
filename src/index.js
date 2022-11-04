@@ -68,7 +68,7 @@ function minus() {
 function oneOperator(operator) {
   let arr = $("#display").text().split(" ");
   for (let i in arr) {
-    if (operators.indexOf(arr[i-1]) !== -1 && arr[i-2] === "") {
+    if (operators.indexOf(arr[i-1]) !== -1 && arr[0] !== "" && arr[i] === "") {
       console.log(arr, arr[i], operators);
       arr.splice(i-1);
       console.log(arr);
