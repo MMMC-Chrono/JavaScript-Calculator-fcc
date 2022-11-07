@@ -1,3 +1,6 @@
+const operators = ["/", "*", "+", "-"];
+let total = 0;
+
 function removeZero() {
   if($("#display").text()==="0") {
     $("#display").empty();
@@ -6,10 +9,7 @@ function removeZero() {
 
 function displayNum(num) {
   $("#display").append(num.text());
-}
-
-const operators = ["/", "*", "+", "-"];
-let total = 0; 
+} 
 
 function calculation() {
   let arr = $("#display").text().split(" ");
