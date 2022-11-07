@@ -118,6 +118,17 @@ function minusMinus() {
   $("#display").text(arr.join(" "))
 }
 
+function minusPlus() {
+  let arr = $("#display").text().split(" ");
+  if (arr[1] === "-" && arr[3] === "+" && arr.length === 5) {
+    let subtraction  = arr[0] - arr[2];
+    console.log(subtraction);
+    total = subtraction + parseInt(arr[4]);
+    console.log(total);
+    console.log("minusplus");
+  }
+}
+
 $("#clear").click(function() {
   $("#display").text("0");
   console.clear();
@@ -127,6 +138,7 @@ $("#equals").click(function() {
 removeZero();
 minus();
 calculation();
+minusPlus();
 $("#display").append(" = ").append(`<br/><p>${total}</p>`);
 });
 
