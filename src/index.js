@@ -13,7 +13,12 @@ function displayNum(num) {
 
 function calculation() {
   let arr = $("#display").text().split(" ");
-  for ( let j in operators) {      
+  console.log(arr);
+    if (arr.length === 1) {
+      total = $("#display").text();
+      console.log(arr);
+    }
+  for ( let j in operators) {  
     if (arr.indexOf(operators[0]) > -1) {
       let i = arr.indexOf("/")
       let divide = arr[i-1] / arr[i+1];        
@@ -81,8 +86,9 @@ function oneOperator() {
 
 function afterEqual() {
   let arr = $("#display").text().split(" ");
-  let newArr = "";
+  let newArr = ""
   for (let i = 0; i < arr.length; i++) {
+    console.log("afterEqual")
     if (arr[i] === "=") {
       newArr+=arr[i+1];    
       console.log("afterEqual is working", arr)  
@@ -131,6 +137,7 @@ function minusPlus() {
 
 $("#clear").click(function() {
   $("#display").text("0");
+  total = 0;
   console.clear();
 });
 
