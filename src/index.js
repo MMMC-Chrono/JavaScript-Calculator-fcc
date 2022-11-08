@@ -92,7 +92,6 @@ function afterEqual() {
     if (arr[i] === "=") {
       arr = arr[i+1];    
       console.log("afterEqual is working", arr)  
-      $("#display").text(arr);
     }
   }
 }
@@ -147,6 +146,7 @@ minus();
 calculation();
 minusPlus();
 $("#display").text(total);
+//$(“#display”).append(" = ").append(<br/><p>${total}</p>);
 });
 
 //numbers
