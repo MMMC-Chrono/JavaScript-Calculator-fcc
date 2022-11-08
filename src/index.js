@@ -16,6 +16,7 @@ function calculation() {
   console.log(arr);
     if (arr.length === 1) {
       total = $("#display").text();
+      console.log(total);
       console.log(arr);
     }
   for ( let j in operators) {  
@@ -86,13 +87,12 @@ function oneOperator() {
 
 function afterEqual() {
   let arr = $("#display").text().split(" ");
-  let newArr = ""
   for (let i = 0; i < arr.length; i++) {
     console.log("afterEqual")
     if (arr[i] === "=") {
-      newArr+=arr[i+1];    
+      arr = arr[i+1];    
       console.log("afterEqual is working", arr)  
-      $("#display").text(newArr);
+      $("#display").text(arr);
     }
   }
 }
@@ -146,48 +146,58 @@ removeZero();
 minus();
 calculation();
 minusPlus();
-$("#display").append(" = ").append(`<br/><p>${total}</p>`);
+$("#display").text(total);
 });
 
 //numbers
 $("#zero").click(function() {
   removeZero();
+  afterEqual();
   $("#display").append($("#zero").text());
 });
 $("#one").click(function() {
   removeZero();
+  afterEqual();
   displayNum($("#one"));
 });
 $("#two").click(function() {
   removeZero();
+  afterEqual();
   displayNum($("#two"));
 });
 $("#three").click(function() {
   removeZero();
+  afterEqual();
   displayNum($("#three"));
 });
 $("#four").click(function() {
   removeZero();
+  afterEqual();
   displayNum($("#four"));
   });
 $("#five").click(function() {
   removeZero();
+  afterEqual();
   displayNum($("#five"));
 });
 $("#six").click(function() {
   removeZero();
+  afterEqual();
   displayNum($("#six"));
 });
 $("#seven").click(function() {
   removeZero();
+  afterEqual();
   displayNum($("#seven"));
 });
 $("#eight").click(function() {
   removeZero();
+  afterEqual();
   displayNum($("#eight"));
 });
 $("#nine").click(function() {
   removeZero();
+  afterEqual();
   displayNum($("#nine"));
 });
 
